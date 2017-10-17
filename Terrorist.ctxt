@@ -1,0 +1,11 @@
+#BlueJ class context
+comment0.target=Terrorist
+comment1.params=type\ s\ r
+comment1.target=Terrorist(java.lang.String,\ Strategy,\ double)
+comment2.params=p\ bombSite
+comment2.target=void\ Almove(Player[],\ location)
+comment3.params=
+comment3.target=void\ decEnergyLevel()
+comment4.params=
+comment4.target=double\ getSpeed()
+numComments=5

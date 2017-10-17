@@ -1,0 +1,19 @@
+#BlueJ class context
+comment0.target=Player
+comment1.params=s\ r\ type
+comment1.target=Player(Strategy,\ double,\ java.lang.String)
+comment2.params=p\ bombSite
+comment2.target=void\ Almove(Player[],\ location)
+comment3.params=p2
+comment3.target=int\ site(Player)
+comment4.params=p2
+comment4.target=int\ fire(Player)
+comment5.params=
+comment5.target=Strategy\ getStrategy()
+comment6.params=
+comment6.target=location\ getLocation()
+comment7.params=newL
+comment7.target=void\ setLocation(location)
+comment8.params=
+comment8.target=double\ getSpeed()
+numComments=9

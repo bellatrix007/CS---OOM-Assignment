@@ -1,0 +1,7 @@
+#BlueJ class context
+comment0.target=Strategy
+comment1.params=currentPlayer\ bomb
+comment1.target=void\ setLocation(Player,\ location)
+comment2.params=player\ currentPlayer
+comment2.target=void\ setLocation(Player[],\ Player)
+numComments=3
