@@ -1,3 +1,9 @@
 #BlueJ class context
 comment0.target=Environment
-numComments=1
+comment1.params=
+comment1.target=Environment()
+comment2.params=t\ ct\ Ground\ bombSite\ order\ storage
+comment2.target=Environment(Terrorist[],\ CounterTerrorist[],\ location,\ location,\ java.lang.String,\ java.lang.String)
+comment3.params=
+comment3.target=void\ setPlayer()
+numComments=4
