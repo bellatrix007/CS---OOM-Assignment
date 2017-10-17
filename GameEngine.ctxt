@@ -1,3 +1,15 @@
 #BlueJ class context
 comment0.target=GameEngine
-numComments=1
+comment1.params=e
+comment1.target=GameEngine(Environment)
+comment2.params=
+comment2.target=void\ play()
+comment3.params=p\ firstTime
+comment3.target=void\ arrangeInOrder(Player[],\ int)
+comment4.params=p
+comment4.target=void\ arrangeCircular(Player[])
+comment5.params=p
+comment5.target=void\ arrangeByEnergyLevel(Player[])
+comment6.params=p
+comment6.target=void\ arrangeBySuccess(Player[])
+numComments=7

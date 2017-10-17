@@ -1,47 +1,56 @@
 
 public class Environment
 {
-    private Terrorist t[];
-    private CounterTerrorist ct[];
     private Player player[];
     private location Ground, bombSite;
     private String order, storage;
+    private int countT, countCT;
     
     Environment()
     {
-        t = null;
-        ct = null;
         player = null;
         Ground = null;
         bombSite = null;
         order = "";
         storage = "";
+        countT = 0;
+        countCT = 0;
     }
     
-    Environment(Terrorist t[], CounterTerrorist ct[], location Ground, location bombSite, String order, String storage)
+    Environment(Player p[], int countT, int countCT, location Ground, location bombSite, String order, String storage)
     {
-        this.t = t;
-        this.ct = ct;
+        this.player = p;
+        this.countT = countT;
+        this.countCT = countCT;
         this.Ground = Ground;
         this.bombSite = bombSite;
         this.order = order;
         this.storage = storage;
-        this.setPlayer();
     }
     
-    void setPlayer()
+    Player[] getPlayers()
     {
-        int n = t.length;
-        player = new Player[2*n];
-        
-        for(int i=0;i<n;i++)
-        {
-            player[i] = t[i];
-        }
-        for(int i=0;i<n;i++)
-        {
-            player[n+i] = ct[i];
-        }
+        return this.player;
+    }
+    
+    int getcT()
+    {
+        return this.countT;
+    }
+    
+    int getcCT()
+    {
+        return this.countCT;
+    }
+    
+    String getOrder()
+    {
+        return this.order;
+    }
+    
+    location getBombSite()
+    {
+        return this.bombSite;
     }
 }
 

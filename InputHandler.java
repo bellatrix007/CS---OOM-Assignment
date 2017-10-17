@@ -5,17 +5,24 @@ public class InputHandler
     {
         Scanner sc = new Scanner(System.in);
         
-        System.out.println("Enter number of players in each team");
+        System.out.println("Enter total number of players");
         int n = sc.nextInt();
-         
-        Terrorist t[] = new Terrorist[n];
-        System.out.println("Enter type, startegy and range of site of each player for terrorists");
+        int countT=0, countCT=0;    //count for terrorists and counter terrorists
+        
+        Player p[] = new Player[n];
+        System.out.println("Enter team(0 for T/1 for CT), type, strategy and range of site of each player for terrorists");
         for(int i=0;i<n;i++)
         {
+            int team = sc.nextInt();
             String type = sc.next();
             String strat = sc.next();
             double range = sc.nextDouble();
             
+            if(team==0)
+                countT++;
+            else
+                countCT++;
+                
             Strategy strategy = null;
             if(strat.equals("nearest"))
                 strategy = new nearest();
@@ -23,57 +30,24 @@ public class InputHandler
                 strategy = new random();
             else if(strat.equals("ahead"))
                 strategy = new ahead();
-            else if(strat.equals("bomb"))
+            else if(strat.equals("bomb")&&team==0)
                 strategy = new bomb();
             
             if(type.equals("cautious"))
             {
-                CautiousT cT = new CautiousT(type,strategy,range);
-                t[i] = cT;
+                Cautious c = new Cautious(team,type,strategy,range);
+                p[i] = c;
             }
             else if(type.equals("aggressive"))
             {
-                AggressiveT aT = new AggressiveT(type,strategy,range);
-                t[i] = aT;
+                Aggressive a = new Aggressive(team,type,strategy,range);
+                p[i] = a; 
             }
-            else if(type.equals("cautious"))
+            else if(type.equals("blind"))
             {
-                BlindT bT = new BlindT(type,strategy,range);
-                t[i] = bT;
+                Blind b = new Blind(team, type,strategy,range);
+                p[i] = b;
             }
-        }
-        
-        CounterTerrorist ct[] = new CounterTerrorist[n];
-        System.out.println("Enter type and startegy of each player for counter terrorists");
-        for(int i=0;i<n;i++)
-        {
-            String type = sc.next();
-            String strat = sc.next();
-            double range = sc.nextDouble();
-            
-            Strategy strategy = null;
-            if(strat.equals("nearest"))
-                strategy = new nearest();
-            else if(strat.equals("random"))
-                strategy = new random();
-            else if(strat.equals("ahead"))
-                strategy = new ahead();
-            
-            if(type.equals("cautious"))
-            {
-                CautiousCT cCT = new CautiousCT(type,strategy,range);
-                ct[i] = cCT;
-            }
-            else if(type.equals("aggressive"))
-            {
-                AggressiveCT aCT = new AggressiveCT(type,strategy,range);
-                ct[i] = aCT;
-            }
-            else if(type.equals("cautious"))
-            {
-                BlindCT bCT = new BlindCT(type,strategy,range);
-                ct[i] = bCT;
-            } 
         }
         
         System.out.println("Enter ground dimensions(>50*>50)");
@@ -88,5 +62,7 @@ public class InputHandler
         System.out.println("Enter storage mechanism");
         String storage = sc.next();
         
+        Environment e = new Environment(p, countT, countCT,  Ground, bombSite, order, storage);
+        new GameEngine(e).play(); 
     }
 } 
