@@ -1,5 +1,6 @@
 public class location
 {
+    //simple class for location storage
     private int X,Y;
     private double theta;
     
