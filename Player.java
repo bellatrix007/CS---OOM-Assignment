@@ -10,7 +10,7 @@ class Player
     private int team; //0=terrorist 1=counter terrorist
     //private static int time = 7;
     
-    Player(int team, String type, Strategy s, double r)
+    Player(int team, String type, Strategy s, double r,location l)
     {
         this.team = team;
         this.strategy = s;
@@ -18,7 +18,7 @@ class Player
         this.type = type;
         this.Alive = 1;
         this.successNumber = 0;
-        l = new location();
+        this.l = new location(l);
     }
     
     void Almove(Player p[],location bombSite)
@@ -34,12 +34,11 @@ class Player
     {
     }
     
-    int site(Player p2)
+    int site(Player p2,double alpha)
     {
         int x1 = this.getLocation().getX();
         int y1 = this.getLocation().getY();
         double theta = this.getLocation().getTheta();
-        double alpha = this.radians;
         
         int x2 = p2.getLocation().getX();
         int y2 = p2.getLocation().getY();
@@ -53,18 +52,16 @@ class Player
     
     int fire(Player p2)
     {
-        if(this.site(p2)==1&&p2.Alive==1)
+        if(this.site(p2,p2.radians)==1&&p2.Alive==1)
         {
-            this.incSuccessNumber();
-            p2.Alive = 0;
-            return 1;
+            if(p2.incHits()==1)
+            {
+                this.incSuccessNumber();
+                p2.Alive = 0;
+                return 1;
+            }
         }
         return 0;
-    }
-
-    Strategy getStrategy()
-    {
-        return this.strategy;
     }
     
     int getTeam()
@@ -75,6 +72,11 @@ class Player
     int isAlive()
     {
         return this.Alive;
+    }
+    
+    int incHits()
+    {
+        return 0;
     }
     
     void incSuccessNumber()
@@ -115,9 +117,9 @@ class Aggressive extends Player
     private int energyLevel;
     private static double speed = 7.0;
     
-    Aggressive(int team, String type,Strategy s, double r)
+    Aggressive(int team, String type,Strategy s, double r,location l)
     {
-        super(team,type,s,r);
+        super(team,type,s,r,l);
         this.energyLevel = 100;
         numberOfHits = 0;
     }
@@ -125,7 +127,9 @@ class Aggressive extends Player
     int incHits()
     {
         this.numberOfHits++;
-        return numberOfHits;
+        if(this.numberOfHits==2)
+            return 1;
+        return 0;
     }
     
     int getEnergyLevel()
@@ -150,9 +154,9 @@ class Cautious extends Player
     private int energyLevel;
     private static double speed = 2.5;
     
-    Cautious(int team, String type,Strategy s, double r)
+    Cautious(int team, String type,Strategy s, double r,location l)
     {
-        super(team,type,s,r);
+        super(team,type,s,r,l);
         numberOfHits = 0;
         this.energyLevel = 100;
     }
@@ -160,7 +164,9 @@ class Cautious extends Player
     int incHits()
     {
         this.numberOfHits++;
-        return numberOfHits;
+        if(this.numberOfHits==1)
+            return 1;
+        return 0;
     }
     
     int getEnergyLevel()
@@ -184,9 +190,9 @@ class Blind extends Player
     private int energyLevel;
     private static double speed = 10;
     
-    Blind(int team, String type,Strategy s, double r)
+    Blind(int team, String type,Strategy s, double r,location l)
     {
-        super(team,type,s,r);
+        super(team,type,s,r,l);
         this.energyLevel = 100;
         numberOfHits = 0;
     }
@@ -194,7 +200,9 @@ class Blind extends Player
     int incHits()
     {
         this.numberOfHits++;
-        return numberOfHits;
+        if(this.numberOfHits==5)
+            return 1;
+        return 0;
     }
     
     int getEnergyLevel()

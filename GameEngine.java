@@ -24,7 +24,7 @@ public class GameEngine
                 case 0:
                 for(i = 0;i < l;i++)
                 {
-                    if(player[i].getTeam()==0) 
+                    if(player[i].getTeam()==0&&player[i].isAlive()==1) 
                     {
                         break;
                     }
@@ -47,7 +47,7 @@ public class GameEngine
                 case 1:
                 for(i = 0;i < l;i++)
                 {
-                    if(player[i].getTeam()==1)
+                    if(player[i].getTeam()==1&&player[i].isAlive()==1)
                     {
                         break;
                     }

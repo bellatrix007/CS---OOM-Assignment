@@ -5,6 +5,9 @@ public class InputHandler
     {
         Scanner sc = new Scanner(System.in);
         
+        System.out.println("Enter ground dimensions(>50*>50)");
+        location Ground = new location(sc.nextInt(),sc.nextInt(),0.0);
+        
         System.out.println("Enter total number of players");
         int n = sc.nextInt();
         int countT=0, countCT=0;    //count for terrorists and counter terrorists
@@ -17,6 +20,11 @@ public class InputHandler
             String type = sc.next();
             String strat = sc.next();
             double range = sc.nextDouble();
+            
+            int x = (int)(Math.random()*Ground.getX());
+            int y = (int)(Math.random()*Ground.getY());
+            double theta = Math.random()*((22*2)/7);
+            location l = new location(x,y,theta);
             
             if(team==0)
                 countT++;
@@ -35,23 +43,20 @@ public class InputHandler
             
             if(type.equals("cautious"))
             {
-                Cautious c = new Cautious(team,type,strategy,range);
+                Cautious c = new Cautious(team,type,strategy,range,l);
                 p[i] = c;
             }
             else if(type.equals("aggressive"))
-            {
-                Aggressive a = new Aggressive(team,type,strategy,range);
+            { 
+                Aggressive a = new Aggressive(team,type,strategy,range,l);
                 p[i] = a; 
             }
             else if(type.equals("blind"))
             {
-                Blind b = new Blind(team, type,strategy,range);
+                Blind b = new Blind(team, type,strategy,range,l);
                 p[i] = b;
             }
         }
-        
-        System.out.println("Enter ground dimensions(>50*>50)");
-        location Ground = new location(sc.nextInt(),sc.nextInt(),0.0);
         
         System.out.println("Enter bombsite");
         location bombSite = new location(sc.nextInt(),sc.nextInt(),0.0);
