@@ -118,8 +118,12 @@ class random extends Strategy
         int cx = currentPlayer.getLocation().getX();
         int cy = currentPlayer.getLocation().getY();
         
-        int randomIndex = (int)(Math.random()*player.length);
-        
+        int randomIndex;
+        do
+        {
+            randomIndex = (int)(Math.random()*player.length);
+        }while(player[randomIndex].equals(currentPlayer));
+            
         Player randomP = player[randomIndex];
         int gx = randomP.getLocation().getX();
         int gy = randomP.getLocation().getY();
